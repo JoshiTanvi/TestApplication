@@ -2,6 +2,7 @@ package com.example.testapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         TextView password =(TextView) findViewById(R.id.password);
         Button loginbtn = findViewById(R.id.loginbtn);
 
+        TextView newuser = (TextView) findViewById(R.id.registertxt);
+
         //setting listener on the login button
         loginbtn.setOnClickListener(v -> {
             if(username.getText().toString().equals("tanvi") && password.getText().toString().equals("tanvi")){
@@ -26,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
             }else
                 //incorrect
-                Toast.makeText(MainActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"LOGIN FAILED! TRY AGAIN!",Toast.LENGTH_SHORT).show();
+        });
+
+        newuser.setOnClickListener(view -> {
+            Intent i = new Intent(this, RegisterActivity.class);
+            startActivity(i);
         });
     }
 }
