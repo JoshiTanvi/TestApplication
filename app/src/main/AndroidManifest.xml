@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestApplication">
         <activity
+            android:name=".ViewDetails"
+            android:exported="true" />
+        <activity
+            android:name=".customGrid"
+            android:exported="true" />
+        <activity
+            android:name=".HomeListActivity"
+            android:exported="true" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity

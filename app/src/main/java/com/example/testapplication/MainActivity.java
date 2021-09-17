@@ -20,16 +20,21 @@ public class MainActivity extends AppCompatActivity {
         TextView password =(TextView) findViewById(R.id.password);
         Button loginbtn = findViewById(R.id.loginbtn);
 
-        TextView newuser = (TextView) findViewById(R.id.registertxt);
+        Button newuser = findViewById(R.id.newuser);
 
         //setting listener on the login button
         loginbtn.setOnClickListener(v -> {
             if(username.getText().toString().equals("tanvi") && password.getText().toString().equals("tanvi")){
                 //correct
-                Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-            }else
+                Intent i = new Intent(this, HomeListActivity.class);
+                startActivity(i);
+                Toast.makeText(MainActivity.this,"Welcome to your notes!",Toast.LENGTH_SHORT).show();
+            }else{
                 //incorrect
+
                 Toast.makeText(MainActivity.this,"LOGIN FAILED! TRY AGAIN!",Toast.LENGTH_SHORT).show();
+
+            }
         });
 
         newuser.setOnClickListener(view -> {
