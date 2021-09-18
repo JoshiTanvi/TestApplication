@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@color/design_default_color_secondary"
+    android:background="#A753CA"
     android:id="@+id/grid_items"
     android:layout_margin="10dp"
     android:layout_marginBottom="10dp">
@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="15sp"
-
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
         >
     </TextView>
 
@@ -25,7 +26,9 @@
         android:layout_below="@+id/grid_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10sp" >
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp">
     </TextView>
 
 </RelativeLayout>
