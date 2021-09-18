@@ -10,46 +10,16 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
-public class HomeListActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class HomeListActivity<a> extends AppCompatActivity {
 
 
-    GridView grid;
-    String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
-
-    } ;
-    int[] imageId = {
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google
-
-    };
+    String[] titlelist;
+    String[] deslist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +28,34 @@ public class HomeListActivity extends AppCompatActivity {
 
         Button newnote = findViewById(R.id.newnotebtn);
 
-        customGrid adapter = new customGrid(this, web, imageId);
-        grid=(GridView)findViewById(R.id.grid);
-        grid.setAdapter(adapter);
+        final GridView grid = (GridView) findViewById(R.id.grid);
+
+        if(MainActivity.notelist != null) {
+           // System.out.println(MainActivity.notelist.toString());
+            customGrid adapter = new customGrid(MainActivity.notelist);
+            grid.setAdapter(adapter);
+
+        }
+      /*  Iterator<Note> iterator = notelist.iterator();
+        int index = 0;
+        while (iterator.hasNext()){
+              titlelist[index] = iterator.next().getTitle().toString();
+              deslist[index] = iterator.next().getDes().toString();
+              index++;
+
+            }
+        }*/
+
         grid.setOnItemClickListener((parent, view, position, id) -> {
             Intent i = new Intent(this, ViewDetails.class);
-            i.putExtra("notename", web[+position]);
+            i.putExtra("pos", position);
             startActivity(i);
         });
 
         newnote.setOnClickListener(v -> {
 
                 Intent i = new Intent(this, ViewDetails.class);
-                i.putExtra("notename", "Untitled");
+                i.putExtra("pos", 0);
                 startActivity(i);
 
         });

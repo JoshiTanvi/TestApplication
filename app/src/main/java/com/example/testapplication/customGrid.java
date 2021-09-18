@@ -8,59 +8,65 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class customGrid extends BaseAdapter {
-    private Context mContext;
-    private final String[] web;
-    private final int[] Imageid;
 
-    public customGrid(Context c, String[] web, int[] Imageid) {
-        mContext = c;
-        this.Imageid = Imageid;
-        this.web = web;
-    }
+        int mCount = 0;
+        String[] titles;
+        String[] des;
+        /**
+         * Default constructor
+         * @param items to fill data to
+         */
 
-    public customGrid() {
-        Imageid = new int[0];
-        web = new String[0];
-    }
+        public customGrid(ArrayList<Note> items) {
 
-    @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return web.length;
-    }
+            mCount = items.size();
 
-    @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+            titles = new String[mCount];
+            des = new String[mCount];
+            // for small size of items it's ok to do it here, sync way
+            int index = 0;
+            for (Note item : items) {
+                // get separate string parts, divided by ,
+                titles[index] = item.getTitle();
+                des[index] = item.getDes();
 
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        View grid;
-        LayoutInflater inflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (convertView == null) {
-
-            grid = new View(mContext);
-            grid = inflater.inflate(R.layout.grid_single, null);
-            TextView textView = (TextView) grid.findViewById(R.id.grid_title);
-            ImageView imageView = (ImageView) grid.findViewById(R.id.grid_img);
-            textView.setText(web[position]);
-            imageView.setImageResource(Imageid[position]);
-        } else {
-            grid = (View) convertView;
+                index++;
+            }
         }
 
-        return grid;
+        @Override
+        public int getCount() {
+            return mCount;
+        }
+
+        @Override
+        public Object getItem(final int position) {
+            return titles[position];
+        }
+
+        @Override
+        public long getItemId(final int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, final View convertView, final ViewGroup parent) {
+
+            View view = convertView;
+
+            if (view == null) {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_single, parent, false);
+            }
+
+            final TextView text = (TextView) view.findViewById(R.id.grid_title);
+            text.setText(titles[position]);
+            final TextView text2 = (TextView) view.findViewById(R.id.grid_description);
+            text2.setText(des[position]);
+
+            return view;
+        }
     }
-}
+

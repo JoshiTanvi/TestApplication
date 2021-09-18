@@ -2,24 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp" >
+    android:padding="5dp"
+    android:id="@+id/grid_items">
 
     <TextView
         android:id="@+id/grid_title"
+        android:text="Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:textSize="9sp" >
+        android:textSize="12sp" >
     </TextView>
-
-    <ImageView
-        android:id="@+id/grid_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp">
-    </ImageView>
 
     <TextView
         android:id="@+id/grid_description"
+        android:text="Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

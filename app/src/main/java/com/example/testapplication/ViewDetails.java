@@ -8,44 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
 public class ViewDetails extends AppCompatActivity {
 
-    String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
 
-    } ;
-    int[] imageId = {
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google,
-            R.drawable.google
-
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,18 +26,20 @@ public class ViewDetails extends AppCompatActivity {
         Button savebtn = findViewById(R.id.savenotebtn);
 
         Intent i = getIntent();
-        String note = i.getStringExtra("notename");
+        int index = 0;
+        i.getIntExtra("pos", index);
+        title.setText(MainActivity.notelist.get(index).getTitle());
+        des.setText(MainActivity.notelist.get(index).getTitle());
+        Toast.makeText(this,"You clicked on " + MainActivity.notelist.get(index).getTitle(),Toast.LENGTH_SHORT).show();
 
-        for (String t: web) {
-            if(t.equals(note)){
-                title.setText(note);
-                des.setText(note);
-                Toast.makeText(this,"You clicked on " + note,Toast.LENGTH_SHORT).show();
+        savebtn.setOnClickListener(view -> {
 
-            }
-        }
+            Note ob = new Note(title.getText().toString(), des.getText().toString());
 
-
+            MainActivity.notelist.add(ob);
+            Intent intent = new Intent(this, HomeListActivity.class);
+            startActivity(intent);
+        });
 
     }
 }
