@@ -49,14 +49,19 @@ public class HomeListActivity<a> extends AppCompatActivity {
         grid.setOnItemClickListener((parent, view, position, id) -> {
             Intent i = new Intent(this, ViewDetails.class);
             i.putExtra("pos", position);
+            Toast.makeText(this,"You clicked on " + MainActivity.notelist.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+
             startActivity(i);
         });
 
         newnote.setOnClickListener(v -> {
 
-                Intent i = new Intent(this, ViewDetails.class);
-                i.putExtra("pos", 0);
-                startActivity(i);
+            Note ob = new Note("Untitled", "This is your new note.");
+
+            MainActivity.notelist.add(ob);
+            Intent intent = new Intent(this, HomeListActivity.class);
+          //  intent.putExtra("pos",  MainActivity.notelist.indexOf(ob));
+            startActivity(intent);
 
         });
 

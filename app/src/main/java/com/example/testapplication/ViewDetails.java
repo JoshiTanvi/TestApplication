@@ -26,17 +26,17 @@ public class ViewDetails extends AppCompatActivity {
         Button savebtn = findViewById(R.id.savenotebtn);
 
         Intent i = getIntent();
-        int index = 0;
-        i.getIntExtra("pos", index);
+        Bundle b = i.getExtras();
+        int index = (int) b.get("pos");
         title.setText(MainActivity.notelist.get(index).getTitle());
-        des.setText(MainActivity.notelist.get(index).getTitle());
-        Toast.makeText(this,"You clicked on " + MainActivity.notelist.get(index).getTitle(),Toast.LENGTH_SHORT).show();
+        des.setText(MainActivity.notelist.get(index).getDes());
+       // Toast.makeText(this,"You clicked on " + MainActivity.notelist.get(index).getTitle(),Toast.LENGTH_SHORT).show();
 
         savebtn.setOnClickListener(view -> {
 
-            Note ob = new Note(title.getText().toString(), des.getText().toString());
+            MainActivity.notelist.get(index).setTitle(title.getText().toString());
+            MainActivity.notelist.get(index).setDes(des.getText().toString());
 
-            MainActivity.notelist.add(ob);
             Intent intent = new Intent(this, HomeListActivity.class);
             startActivity(intent);
         });
