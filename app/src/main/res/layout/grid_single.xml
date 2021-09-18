@@ -1,26 +1,31 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:id="@+id/grid_items">
+    android:padding="10dp"
+    android:background="@color/design_default_color_secondary"
+    android:id="@+id/grid_items"
+    android:layout_margin="10dp"
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:id="@+id/grid_title"
         android:text="Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textSize="12sp" >
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+
+        >
     </TextView>
 
     <TextView
         android:id="@+id/grid_description"
         android:text="Description"
+        android:layout_below="@+id/grid_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textSize="9sp" >
+        android:textSize="10sp" >
     </TextView>
 
-</LinearLayout>
+</RelativeLayout>
